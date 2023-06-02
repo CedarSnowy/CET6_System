@@ -20,6 +20,7 @@ from django.urls import path
 from django.urls import re_path as url
 from lookupgrade.views import lookupgrades
 from payment.views import information_of_registration, QRcode, pay_done
+from choose_exam.views import choose_exam
 
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     path("payment2/", QRcode),
     path("payment_done/", pay_done),
     path("lookupgrades/", lookupgrades),
+    path("choose_exam/", choose_exam),
 ]

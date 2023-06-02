@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "Score_Modification",  # 成绩信息修改页面
     "payment",  # 支付页面
     "lookupgrade",  # 查分页面
+    "choose_exam",  # 考试选择界面
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = "cet6.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],  # 加入这一行
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -80,9 +81,9 @@ WSGI_APPLICATION = "cet6.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",  # 数据库的类型
-        "NAME": "cet6",  # 所使用的的数据库的名字
+        "NAME": "cet",  # 所使用的的数据库的名字
         "USER": "root",  # 数据库服务器的用户
-        "PASSWORD": "",
+        "PASSWORD": "root",
         "HOST": "localhost",  # 主机
         "PORT": "3306",  # 端口
     }

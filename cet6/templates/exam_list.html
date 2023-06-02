@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exam List</title>
+</head>
+<body>
+    <h1>Exam List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Exam Name</th>
+                <th>Exam Time</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in exams %}
+            <tr>
+                <td><a href="#">{{ exam.exam_name }}</a></td>
+                <td>{{ exam.exam_time }}</td>
+                <td>{{ exam.location }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
