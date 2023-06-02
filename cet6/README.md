@@ -31,5 +31,23 @@ DATABASES = {
     }
 }
 ```
-## 5.在自己的app文件夹中编写代码
-## 6.提交
+## 5.在cet6/setting.py的TEMPLATES中，加入该行代码
+```python
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],  # 加入这一行
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+```
+## 6.在自己的app文件夹中编写代码
+## 7.提交
