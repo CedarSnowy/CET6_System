@@ -18,7 +18,7 @@ class SubjectiveQuestions(models.Model):
 
 
 class SubjectiveAnswers(models.Model):
-    examinee_id = models.IntegerField()
+    examinee_id = models.CharField(max_length=18)
     paper_id = models.IntegerField()
     question_id = models.IntegerField()
     answer = models.CharField(max_length=1000)
@@ -27,6 +27,7 @@ class SubjectiveAnswers(models.Model):
     class Meta:
         managed = True
         db_table = "subjective_answers"
+        unique_together = (("examinee_id", "paper_id", "question_id"),)
 
 
 class ObjectiveQuestions(models.Model):
@@ -45,15 +46,16 @@ class ObjectiveQuestions(models.Model):
 
 
 class ObjectiveAnswers(models.Model):
-    examinee_id = models.IntegerField()
+    examinee_id = models.CharField(max_length=18)
     paper_id = models.IntegerField()
     question_id = models.IntegerField()
     answer = models.CharField(max_length=1)
-    scores = models.FloatField()
+    score = models.FloatField()
 
     class Meta:
         managed = True
         db_table = "objective_answers"
+        unique_together = (("examinee_id", "paper_id", "question_id"),)
 
 
 class PaperQuestions(models.Model):

@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container mt-5">
-    <form action="{% url 'submit_answers' %}?nid={{ nid }}" method="POST">
+    <form action="{% url 'submit_answers' %}" method="POST">
       {% csrf_token %}
       <!-- 客观题 -->
       <h2 class="mb-4">客观题</h2>
@@ -18,19 +18,19 @@
             <h5 class="card-title">{{ question.question }}</h5>
             <p class="card-subtitle mb-2 text-muted">分值: {{ question.score }}</p>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="a">
+              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="A">
               <label class="form-check-label">{{ question.option_a }}</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="b">
+              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="B">
               <label class="form-check-label">{{ question.option_b }}</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="c">
+              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="C">
               <label class="form-check-label">{{ question.option_c }}</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="d">
+              <input class="form-check-input" type="radio" name="{{ question.id }}-choice" value="D">
               <label class="form-check-label">{{ question.option_d }}</label>
             </div>
           </div>

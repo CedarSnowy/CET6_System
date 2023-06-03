@@ -44,12 +44,13 @@ def get_questions_by_paper(request, nid, paper_id=1):
 
     # 将查询结果保存到列表中并返回
     questions = []
-    questions.append(subjective_questions)
     questions.append(objective_questions)
+    questions.append(subjective_questions)
     return render(request, "taking_exam.html", {"questions_list": questions})
 
 
 def submit_answers(request):
+    print("_nid", _nid, "_paper", _paper_id)
     if request.method == "POST":
         # 获取所有的客观题 id 和答案
         objective_choices = {}
@@ -57,6 +58,7 @@ def submit_answers(request):
             if not key.endswith("-choice"):
                 continue
             objective_choices[key[:-7]] = request.POST[key]
+        print(objective_choices)
 
         # 获取所有的主观题 id 和答案
         subjective_answers = {}
@@ -66,10 +68,18 @@ def submit_answers(request):
             answer_id = key[:-5]
             answer_content = request.POST[key]
             subjective_answers[answer_id] = answer_content
+        print(subjective_answers)
 
         # 提交客观题答案
         for question_id, choice in objective_choices.items():
-            question = ObjectiveQuestions.objects.get(pk=question_id)
+            # 检查是否已存在
+            existing_answer = ObjectiveAnswers.objects.filter(
+                examinee_id=_nid,
+                paper_id=_paper_id,
+                question_id=question_id,
+            ).first()
+
+            # question = ObjectiveQuestions.objects.get(pk=question_id)
             ObjectiveAnswers.objects.create(
                 examinee_id=_nid,
                 paper_id=_paper_id,
@@ -80,10 +90,13 @@ def submit_answers(request):
 
         # 提交主观题答案
         for answer_id, content in subjective_answers.items():
-            answer = SubjectiveAnswers.objects.get(pk=answer_id)
-            answer.subjective_answer = content
-            answer.save()
-
+            answer = SubjectiveAnswers.objects.create(
+                examinee_id=_nid,
+                paper_id=_paper_id,
+                question_id=answer_id,
+                answer=content,
+                score=0,
+            )
         messages.success(request, "提交成功！")
         # return redirect("exam_result")
 
