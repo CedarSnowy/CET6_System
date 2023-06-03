@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     "lookupgrade",  # 查分页面
     "choose_exam",  # 考试选择界面
     "Search_APPLY",  # 考试信息查看和报名界面
+    "User_Manage",  # 用户管理界面
+    "Paper_Modification",  # 阅卷管理
+
 ]
 
 MIDDLEWARE = [
@@ -83,9 +86,9 @@ WSGI_APPLICATION = "cet6.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",  # 数据库的类型
-        "NAME": "cet6",  # 所使用的的数据库的名字
+        "NAME": "cet66",  # 所使用的的数据库的名字
         "USER": "root",  # 数据库服务器的用户
-        "PASSWORD": "123456",
+        "PASSWORD": "ky001113",
         "HOST": "localhost",  # 主机
         "PORT": "3306",  # 端口
     }
@@ -114,9 +117,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "zh-hans"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Shanghai"
 
 USE_I18N = True
 

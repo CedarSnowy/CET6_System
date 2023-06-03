@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CET6考试</title>
+    <link rel="stylesheet" href="/static/css/user_login.css">
+
+</head>
+<body>
+    <section>
+
+        <!-- 登录 -->
+
+        <div class="container">
+
+            <div class="user singinBx">
+                <div class="imgBx"><img src="/static/images/login1.png" alt=""></div>
+
+                <div class="formBx">
+                    <form method="post" action="" >
+                        {% csrf_token %}
+
+                        <h2>CET6登录</h2>
+                        <span>手机号:</span>
+                        <input type="text" name="login_number" placeholder="手机号" autocomplete="off">
+                        <span>密码:</span>
+                        <input type="password" name="login_pwd" placeholder="密码" autocomplete="new-password">
+{#                        <a href="/homapage/{{ obj.id_card_no }}/perinfo/" > <input type="submit" name="" value="登录"> </a>#}
+                          <a href="/homepage" > <input type="submit" name="" value="登录"> </a>
+{#                        <input type="submit" name="" value="登录">#}
+{#                         <a href="/homapage/{{1}}/perinfo/" > <input type="submit" name="" value="登111录"> </a>#}
+                        <p class="signup">没有账号？<a href="/user/register" >注册</a></p>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+</body>
+</html>

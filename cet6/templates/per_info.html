@@ -1,0 +1,159 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>个人信息</title>#}
+{#    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1/css/bootstrap.css">#}
+{#    <script type="text/javascript" src="/static/plugins/bootstrap-3.4.1/js/bootstrap.js"></script>#}
+{##}
+{##}
+{##}
+{#</head>#}
+{#<body>#}
+{##}
+{##}
+{##}
+{#    <div class="panel panel-default">#}
+{#      <div class="panel-heading">#}
+{#        <h3 class="panel-title">用户个人信息</h3>#}
+{#      </div>#}
+{#      <div class="panel-body">#}
+{##}
+{#        <form method="post">#}
+{#            {% csrf_token %}#}
+{#            <div class="form-group">#}
+{#                <label >姓名</label>#}
+{#                <input type="text" class="form-control" name="name" placeholder="姓名" autocomplete="off">#}
+{#            </div>#}
+{##}
+{#            <div class="form-group">#}
+{#                <label >性别</label>#}
+{#                <input type="text" class="form-control" name="gender" placeholder="性别" autocomplete="off">#}
+{#            </div>#}
+{##}
+{#            <button type="submit" class="btn btn-primary">确认修改</button>#}
+{#        </form>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#      </div>#}
+{#    </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#</body>#}
+{#</html>#}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+
+    <link rel="stylesheet" href="/static/css/per_info.css">
+{#    <link rel="shortcut icon" href="images/camera.ico">#}
+</head>
+<body>
+
+<!--头部-->
+<div id="reg_header">
+    <div class="reg_h_center">
+        <div class="reg_h_left">
+{#            <img src="images/logo.png" alt="">#}
+            <h3>考生个人信息</h3>
+        </div>
+    </div>
+</div>
+
+
+<!--表单内容-->
+<div class="reg_back">
+    <div class="reg_left">
+        <p>个人信息</p>
+        <p>USER INFO</p>
+    </div>
+    <div class="reg_center">
+        <div class="reg_form">
+            <form action="#" method="post">
+                {% csrf_token %}
+
+                <table>
+                    <tr>
+                        <td class="td_left"><label for="username">用户名</label></td>
+                        <td class="td_right"><input type="text" name="username" placeholder="请输入用户名"
+                                                    id="username" value={{ obj.name }}></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="gender">性别</label></td>
+                        <td class="td_right"><input type="text" name="gender" placeholder="请输入您的性别"
+                                                    id="username" value={{ obj.gender }}></td>
+{#                        <td class="td_left"><label>性别</label></td>#}
+{#                        <td class="td_right">#}
+{#                            <input type="radio" name="gender" value="男" > 男#}
+{#                            <input type="radio" name="gender" value="女" > 女#}
+{#                            <script> $("input:radio[value='{{obj.gender}}']").attr('checked','checked');</script>#}
+{#                            <script>#}
+{#                                $("input:radio[value='{{obj.gender}}']").attr('checked','true');#}
+{##}
+{#                                var tesObj = document.getElementsByName("gender");#}
+{##}
+{#                                //设置value值为0选中#}
+{#                                for(var i=0; i < tesObj.length; i++){#}
+{#                                    if (tesObj[i].value== {{obj.gender}}){#}
+{#                                           tesObj[i].checked = true;#}
+{#                                           break;#}
+{#                                    }#}
+{#                                }#}
+{##}
+{#                            </script>#}
+{##}
+{#                        </td>#}
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="password">密码</label></td>
+                        <td class="td_right"><input type="password" name="password" placeholder="请输入密码"
+                                                    id="password" value={{ obj.password }} autocomplete="new-password"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="idcard">身份证号</label></td>
+                        <td class="td_right"><input type="text" name="id_number" placeholder="请输入您的身份证号"
+                                                    id="Telphone" value={{ obj.id_card_no }}></td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_left"><label for="Telphone">手机号</label></td>
+                        <td class="td_right"><input type="text" name="telephone" placeholder="请输入您的手机号"
+                                                    id="Telphone" value={{ obj.phone_number }}></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="center"><input type="submit" value="确认修改" id="btn_sub"></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+
+
+{#var tesObj = document.getElementsByName("killOrder");#}
+{##}
+{#//设置value值为0选中#}
+{#for(var i=0; i < tesObj.length; i++){#}
+{# 	if (tesObj[i].value=="0"){#}
+{#           tesObj[i].checked = true;#}
+{#           break;#}
+{#    }#}
+{#}#}

@@ -22,6 +22,8 @@ from lookupgrade.views import lookupgrades
 from payment.views import information_of_registration, QRcode, pay_done
 from choose_exam.views import choose_exam
 from Search_APPLY.views import search_exam_info, submit_enroll_info
+from User_Manage.views import user_login, user_register, per_info
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -34,4 +36,8 @@ urlpatterns = [
     path("choose_exam/", choose_exam),
     path("search_exam_info/", search_exam_info),
     path("submit_enroll_info/", submit_enroll_info),
+    path("user/login", user_login),
+    path("user/register", user_register),
+    path("homepage/<int:nid>/perinfo", per_info),
+
 ]

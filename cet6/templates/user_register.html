@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CET6考试</title>
+    <link rel="stylesheet" href="/static/css/user_login.css">
+
+</head>
+<body>
+    <section>
+
+
+
+        <div class="container">
+
+            <!-- 注册 -->
+
+            <div class="user singinBx">
+                <div class="imgBx"><img src="/static/img/login1.png" alt=""></div>
+
+                <div class="formBx">
+                    <form method="post" action="" autocomplete="off">
+                        {% csrf_token %}
+
+                        <h2>CET6注册</h2>
+                        <span>姓名:</span>
+                        <input type="text" name="register_name" placeholder="姓名" autocomplete="off">
+                        <span>性别:</span>
+                        <input type="text" name="register_gender" placeholder="性别" autocomplete="off">
+                        <span>身份证号:</span>
+                        <input type="text" name="register_id" placeholder="身份证号" autocomplete="off">
+                        <span>电话号:</span>
+                        <input type="text" name="register_phone" placeholder="电话号" autocomplete="off">
+                        <span>密码:</span>
+                        <input type="password" name="register_pwd1" placeholder="请输入密码" autocomplete="new-password">
+                        <input type="password" name="register_pwd2" placeholder="请再次输入密码" autocomplete="new-password">
+                        <input type="submit" name="" value="注册">
+                        <p class="signup">已有账号？<a href="/user/login" >登录</a></p>
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+</body>
+</html>
