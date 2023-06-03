@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <img src="/static/images/hp.png" height="410" width="1450" />
+</head>
+
+<style type="text/css">
+    .bb{
+        text-align: center;
+    }
+    .mybb{
+        background-color: #e0dedf;
+        text-align: center;
+        border-radius: 8px;
+        padding: 15px 32px;
+        border: none;
+        text-decoration: none;
+        margin-top: 5px;
+    }
+    .mybb:hover {
+    background-color: #939693; /* Green */
+    color: white;
+}
+
+</style>
+
+<body>
+<div class="bb">
+    <button  type="button"  class="mybb">考试信息</button>
+    <br>
+    <button type="button" class="mybb">考试报名</button>
+    <br>
+    <button type="button" class="mybb">成绩查询</button>
+    <br>
+    <button type="button" class="mybb">试题选择</button>
+    <br>
+    <button onclick='location.href=("perinfo")' type="button" class="mybb">个人信息</button>
+    <br>
+</div>
+
+
+
+</body>
+
+</html>

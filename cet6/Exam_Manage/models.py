@@ -133,7 +133,7 @@ class DjangoSession(models.Model):
 
 
 class Enrollment(models.Model):
-    id_card_no = models.OneToOneField('Examinee', models.DO_NOTHING, db_column='id_card_no', primary_key=True)
+    id_card_no = models.OneToOneField('Examinee', models.DO_NOTHING, db_column='id_card_no', primary_key=True)  # The composite primary key (id_card_no, exam_id) found, that is not supported. The first column is selected.
     exam = models.ForeignKey('ExamInformation', models.DO_NOTHING)
     enrollment_time = models.DateTimeField(blank=True, null=True)
     payment_status = models.CharField(max_length=20, blank=True, null=True)
@@ -145,24 +145,25 @@ class Enrollment(models.Model):
 
 
 class ExamInformation(models.Model):
-    exam_id = models.IntegerField(primary_key=True)
+    exam_id = models.IntegerField(primary_key=True)  # The composite primary key (exam_id, paper_id) found, that is not supported. The first column is selected.
     def __str__(self):
         return str(self.exam_id)
     exam_name = models.CharField(max_length=50, blank=True, null=True)
     exam_time = models.DateTimeField(blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    paper = models.ForeignKey('Papers', models.DO_NOTHING)
 
     class Meta:
         managed = False
         db_table = 'exam_information'
-    
+        unique_together = (('exam_id', 'paper'),)
 
 
 class ExamScore(models.Model):
-    id_card_no = models.OneToOneField('Examinee', models.DO_NOTHING, db_column='id_card_no', primary_key=True)
+    id_card_no = models.OneToOneField('Examinee', models.DO_NOTHING, db_column='id_card_no', primary_key=True)  # The composite primary key (id_card_no, exam_id) found, that is not supported. The first column is selected.
     def __str__(self):
-        return str(self.id_card_no)   
+        return str(self.id_card_no)
     exam = models.ForeignKey(ExamInformation, models.DO_NOTHING)
     def __str__(self):
         return str(self.exam)
@@ -173,8 +174,6 @@ class ExamScore(models.Model):
         managed = False
         db_table = 'exam_score'
         unique_together = (('id_card_no', 'exam'),)
-
-
 
 
 class Examinee(models.Model):
@@ -191,8 +190,60 @@ class Examinee(models.Model):
         db_table = 'examinee'
 
 
+class ObjectiveAnswers(models.Model):
+    examinee = models.OneToOneField(Examinee, models.DO_NOTHING, primary_key=True)  # The composite primary key (examinee_id, paper_id, question_id) found, that is not supported. The first column is selected.
+    paper = models.ForeignKey('Papers', models.DO_NOTHING)
+    question = models.ForeignKey('ObjectiveQuestions', models.DO_NOTHING)
+    answer = models.CharField(max_length=1, blank=True, null=True)
+    score = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'objective_answers'
+        unique_together = (('examinee', 'paper', 'question'),)
+
+
+class ObjectiveQuestions(models.Model):
+    id = models.IntegerField(primary_key=True)
+    question = models.CharField(max_length=1000, blank=True, null=True)
+    option_a = models.CharField(max_length=500, blank=True, null=True)
+    option_b = models.CharField(max_length=500, blank=True, null=True)
+    option_c = models.CharField(max_length=500, blank=True, null=True)
+    option_d = models.CharField(max_length=500, blank=True, null=True)
+    answer_option = models.CharField(max_length=1, blank=True, null=True)
+    score = models.FloatField(blank=True, null=True)
+    create_time = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'objective_questions'
+
+
+class PaperQuestion(models.Model):
+    paper = models.ForeignKey('Papers', models.DO_NOTHING)
+    question = models.ForeignKey('SubjectiveQuestions', models.DO_NOTHING)
+    question_type = models.CharField(max_length=10)
+
+    class Meta:
+        managed = False
+        db_table = 'paper_question'
+
+
+class Papers(models.Model):
+    id = models.IntegerField(primary_key=True)
+    def __str__(self):
+        return str(self.id)
+    paper_name = models.CharField(max_length=100, blank=True, null=True)
+    total_score = models.FloatField()
+    create_time = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'papers'
+
+
 class Payment(models.Model):
-    id_card_no = models.OneToOneField(Examinee, models.DO_NOTHING, db_column='id_card_no', primary_key=True)
+    id_card_no = models.OneToOneField(Examinee, models.DO_NOTHING, db_column='id_card_no', primary_key=True)  # The composite primary key (id_card_no, exam_id) found, that is not supported. The first column is selected.
     exam = models.ForeignKey(ExamInformation, models.DO_NOTHING)
     payment_time = models.DateTimeField(blank=True, null=True)
     payment_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
@@ -201,3 +252,28 @@ class Payment(models.Model):
         managed = False
         db_table = 'payment'
         unique_together = (('id_card_no', 'exam'),)
+
+
+class SubjectiveAnswers(models.Model):
+    examinee = models.OneToOneField(Examinee, models.DO_NOTHING, primary_key=True)  # The composite primary key (examinee_id, paper_id, question_id) found, that is not supported. The first column is selected.
+    paper = models.ForeignKey(Papers, models.DO_NOTHING)
+    question = models.ForeignKey('SubjectiveQuestions', models.DO_NOTHING)
+    answer = models.CharField(max_length=1000, blank=True, null=True)
+    score = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'subjective_answers'
+        unique_together = (('examinee', 'paper', 'question'),)
+
+
+class SubjectiveQuestions(models.Model):
+    id = models.IntegerField(primary_key=True)
+    question = models.CharField(max_length=1000, blank=True, null=True)
+    answer = models.CharField(max_length=1000, blank=True, null=True)
+    score = models.FloatField(blank=True, null=True)
+    create_time = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'subjective_questions'

@@ -50,4 +50,33 @@ TEMPLATES = [
 ]
 ```
 ## 6.在自己的app文件夹中编写代码
-## 7.提交
+
+## 7.代码修改
+### (1) 在url.s中修改路径格式，参照如下:
+```python
+path("homepage/<int:nid>", homepage),
+path("homepage/<int:nid>/perinfo", per_info),
+path("homepage/<int:nid>/xx", xx),
+```
+### 与在User_Manage/view.py的homepage函数中添加参数nid一样，在自己对应的view.py中添加参数
+```python
+def homepage(request, nid):
+    if request.method == "GET":
+        return render(request, "homepage.html")
+```
+
+### (2) view.py的相关修改可参照User_Manage/views.py文件
+```python
+# eg.页面跳转  user_login()函数中用到
+redirect("/homepage/{}/".format(obj.id_card_no))
+```
+### (3) 在homepage.html中的其他按钮位置添加类似url参数
+```html
+<div class="bb">
+     <!--        /homepage/<int:nid>/perinfo"  仅需添加最后的一部分-->
+    <button onclick='location.href=("perinfo")' type="button" class="mybb">个人信息</button>
+    
+</div>
+```
+
+## 8.提交

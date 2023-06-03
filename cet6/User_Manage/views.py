@@ -16,13 +16,9 @@ def user_login(request):
     data_list = models.Examinee.objects.all()
     for obj in data_list:
         if obj.phone_number == phone_number and obj.password == password:
-            # 应该跳转到首页
-            # return redirect("/homepage/")
-            # 此处先设为跳转到个人信息界面
-            # return redirect("/perinfo/")
             obj = models.Examinee.objects.filter(password=password).first()
-            # return render(request, "per_info.html", {"obj": obj})
-            return redirect("/homepage/{}/perinfo".format(obj.id_card_no))
+            # return redirect("/homepage/{}/perinfo".format(obj.id_card_no))
+            return redirect("/homepage/{}/".format(obj.id_card_no))
             # return redirect("/homepage/")
 
     return HttpResponse("登录失败")
@@ -54,9 +50,10 @@ def user_register(request):
     return redirect("/user/login")
 
 
-# # 首页
-# def homepage(request):
-#     return render(request, "homepage.html")
+# 首页
+def homepage(request, nid):
+    if request.method == "GET":
+        return render(request, "homepage.html")
 
 
 # 个人信息页面
