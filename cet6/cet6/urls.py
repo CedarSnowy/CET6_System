@@ -127,6 +127,6 @@ urlpatterns = [
     path("user/register", user_register),
     path("homepage/<int:nid>/", homepage),
     path("homepage/<int:nid>/perinfo", per_info),
-    path("taking_exam/", get_questions_by_paper, name="taking_exam"),
+    path("homepage/<int:nid>/taking_exam", get_questions_by_paper, name="taking_exam"),
     path("submit_answers/", submit_answers, name="submit_answers"),
 ]

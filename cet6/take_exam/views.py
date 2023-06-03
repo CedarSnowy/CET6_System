@@ -11,10 +11,20 @@ from .models import (
     PaperQuestions,
 )
 
+_nid = 0
+_paper_id = 0
 
-def get_questions_by_paper(request, paper_id=1):
+
+def homepage(request, nid):
+    if request.method == "GET":
+        return render(request, "homepage.html")
+
+
+def get_questions_by_paper(request, nid, paper_id=1):
+    global _nid, _paper_id
+    _nid, _paper_id = nid, paper_id
     # 获取与指定试卷相关的问题
-    paper_questions = PaperQuestions.objects.filter(paper_id=paper_id)
+    paper_questions = PaperQuestions.objects.filter(paper_id=_paper_id)
 
     # 获取主观题和客观题的 ID 列表
     subjective_question_ids = [
@@ -61,10 +71,11 @@ def submit_answers(request):
         for question_id, choice in objective_choices.items():
             question = ObjectiveQuestions.objects.get(pk=question_id)
             ObjectiveAnswers.objects.create(
-                question=question,
-                user=request.user,
-                objective_choice=choice,
-                score=question.score,
+                examinee_id=_nid,
+                paper_id=_paper_id,
+                question_id=question_id,
+                answer=choice,
+                score=0,
             )
 
         # 提交主观题答案
@@ -74,6 +85,6 @@ def submit_answers(request):
             answer.save()
 
         messages.success(request, "提交成功！")
-        return redirect("exam_result")
+        # return redirect("exam_result")
 
-    return render(request, "submit_answers.html")
+    return render(request, "homepage.html")

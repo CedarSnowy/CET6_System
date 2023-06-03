@@ -9,8 +9,8 @@ from django.urls import reverse
 class SubjectiveQuestions(models.Model):
     id = models.IntegerField(primary_key=True)
     question = models.CharField(max_length=1000, blank=True, null=True)
-    # answer = models.CharField(blank=True, null=True)
-    score = models.FloatField(max_length=100, blank=True, null=True)
+    answer = models.CharField(max_length=1000, blank=True, null=True)
+    score = models.FloatField()
 
     class Meta:
         managed = True
@@ -22,6 +22,11 @@ class SubjectiveAnswers(models.Model):
     paper_id = models.IntegerField()
     question_id = models.IntegerField()
     answer = models.CharField(max_length=1000)
+    score = models.FloatField()
+
+    class Meta:
+        managed = True
+        db_table = "subjective_answers"
 
 
 class ObjectiveQuestions(models.Model):
@@ -31,9 +36,8 @@ class ObjectiveQuestions(models.Model):
     option_b = models.CharField(max_length=500)
     option_c = models.CharField(max_length=500)
     option_d = models.CharField(max_length=500)
-    # answer = models.CharField(blank=True, null=True)
-
-    score = models.FloatField(max_length=100, blank=True, null=True)
+    answer_option = models.CharField(max_length=1, blank=True, null=True)
+    score = models.FloatField()
 
     class Meta:
         managed = True
@@ -45,6 +49,11 @@ class ObjectiveAnswers(models.Model):
     paper_id = models.IntegerField()
     question_id = models.IntegerField()
     answer = models.CharField(max_length=1)
+    scores = models.FloatField()
+
+    class Meta:
+        managed = True
+        db_table = "objective_answers"
 
 
 class PaperQuestions(models.Model):

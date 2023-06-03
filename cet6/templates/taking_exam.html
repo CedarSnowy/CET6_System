@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container mt-5">
-    <form action="{% url 'submit_answers' %}" method="POST">
+    <form action="{% url 'submit_answers' %}?nid={{ nid }}" method="POST">
       {% csrf_token %}
       <!-- 客观题 -->
       <h2 class="mb-4">客观题</h2>

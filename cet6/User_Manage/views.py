@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from User_Manage import models
 from django import forms
+
 # Create your views here.
 
 
@@ -39,8 +40,13 @@ def user_register(request):
 
     # 添加到数据库
     # print(obj.id_card_no, obj.gender, obj.password, obj.name, obj.phone_number)
-    models.Examinee.objects.create(id_card_no=register_id, gender=register_gender, password=register_pwd,
-                                   name=register_name, phone_number=register_phone)
+    models.Examinee.objects.create(
+        id_card_no=register_id,
+        gender=register_gender,
+        password=register_pwd,
+        name=register_name,
+        phone_number=register_phone,
+    )
 
     data_list = models.Examinee.objects.all()
     for obj in data_list:
@@ -71,14 +77,8 @@ def per_info(request, nid):
     phone = request.POST.get("telephone", None)
     pwd = request.POST.get("password", None)
 
-    models.Examinee.objects.filter(id_card_no=nid).update(name=name, gender=gender,
-                                                                phone_number=phone, password=pwd)
+    models.Examinee.objects.filter(id_card_no=nid).update(
+        name=name, gender=gender, phone_number=phone, password=pwd
+    )
     obj = models.Examinee.objects.filter(id_card_no=id_number).first()
     return render(request, "per_info.html", {"obj": obj})
-
-
-
-
-
-
-
