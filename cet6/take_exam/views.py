@@ -10,9 +10,10 @@ from .models import (
     SubjectiveAnswers,
     PaperQuestions,
 )
+from django.contrib.auth import logout
 
-_nid = 0
-_paper_id = 0
+_nid = 310110199001011234
+_paper_id = 1
 
 
 def homepage(request, nid):
@@ -79,25 +80,45 @@ def submit_answers(request):
                 question_id=question_id,
             ).first()
 
-            # question = ObjectiveQuestions.objects.get(pk=question_id)
-            ObjectiveAnswers.objects.create(
-                examinee_id=_nid,
-                paper_id=_paper_id,
-                question_id=question_id,
-                answer=choice,
-                score=0,
-            )
+            if existing_answer:
+                print(f"Answer already exists: id={existing_answer.id}")
+            else:
+                answer = ObjectiveAnswers.objects.create(
+                    examinee_id=_nid,
+                    paper_id=_paper_id,
+                    question_id=question_id,
+                    answer=choice,
+                    score=0,
+                )
+                print(f"Saved answer: id={answer.id}")
 
         # 提交主观题答案
         for answer_id, content in subjective_answers.items():
-            answer = SubjectiveAnswers.objects.create(
+            # 检查是否已存在
+            existing_answer = SubjectiveAnswers.objects.filter(
                 examinee_id=_nid,
                 paper_id=_paper_id,
-                question_id=answer_id,
-                answer=content,
-                score=0,
-            )
-        messages.success(request, "提交成功！")
-        # return redirect("exam_result")
+                question_id=question_id,
+            ).first()
 
-    return render(request, "homepage.html")
+            if existing_answer:
+                print(f"Answer already exists: id={existing_answer.id}")
+            else:
+                answer = SubjectiveAnswers.objects.create(
+                    examinee_id=_nid,
+                    paper_id=_paper_id,
+                    question_id=question_id,
+                    answer=content,
+                    score=0,
+                )
+                print(f"Saved answer: id={answer.id}")
+
+        messages.success(request, "提交成功！")
+        return redirect("logout")
+    else:
+        return render(request, "taking_exam")
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, "logout.html")

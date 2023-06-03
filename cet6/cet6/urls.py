@@ -33,7 +33,7 @@ from Paper_Modification.models import (
 )
 from Exam_Manage.models import ExamInformation  # 后台管理员_考试信息管理类
 from Exam_Manage.models import ExamScore
-from take_exam.views import get_questions_by_paper, submit_answers
+from take_exam.views import get_questions_by_paper, submit_answers, logout_view
 
 
 class ExamInformation_dataCenterAdmin(admin.ModelAdmin):
@@ -129,4 +129,5 @@ urlpatterns = [
     path("homepage/<int:nid>/perinfo", per_info),
     path("homepage/<int:nid>/taking_exam", get_questions_by_paper, name="taking_exam"),
     path("submit_answers/", submit_answers, name="submit_answers"),
+    path("logout/", logout_view, name="logout"),
 ]
