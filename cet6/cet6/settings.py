@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "Search_APPLY",  # 考试信息查看和报名界面
     "User_Manage",  # 用户管理界面
     "Paper_Modification",  # 阅卷管理
-
+    "take_exam",  # 答题页面
 ]
 
 MIDDLEWARE = [
@@ -86,9 +86,9 @@ WSGI_APPLICATION = "cet6.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",  # 数据库的类型
-        "NAME": "cet66",  # 所使用的的数据库的名字
+        "NAME": "cet",  # 所使用的的数据库的名字
         "USER": "root",  # 数据库服务器的用户
-        "PASSWORD": "ky001113",
+        "PASSWORD": "root",
         "HOST": "localhost",  # 主机
         "PORT": "3306",  # 端口
     }
