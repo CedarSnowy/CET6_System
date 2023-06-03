@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "payment",  # 支付页面
     "lookupgrade",  # 查分页面
     "choose_exam",  # 考试选择界面
+    "Search_APPLY",  # 考试信息查看和报名界面
 ]
 
 MIDDLEWARE = [
@@ -82,9 +83,9 @@ WSGI_APPLICATION = "cet6.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",  # 数据库的类型
-        "NAME": "cet",  # 所使用的的数据库的名字
+        "NAME": "cet6",  # 所使用的的数据库的名字
         "USER": "root",  # 数据库服务器的用户
-        "PASSWORD": "root",
+        "PASSWORD": "123456",
         "HOST": "localhost",  # 主机
         "PORT": "3306",  # 端口
     }
