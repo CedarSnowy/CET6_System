@@ -1,0 +1,15 @@
+.btn {
+    margin: 8px auto;
+    flex-shrink: 0;
+    width: 160px;
+    height: 64px;
+}
+
+.rect {
+    background: #f6ed8d;
+}
+
+.circle {
+    border-radius: 64px;
+    background: #7de3c8;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+ {% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Show Exam Information Successfully</title>
+    </head>
+    <body>
+        <link rel="stylesheet" href="{% static 'table.css' %}">
+        <table align="center">
+        <caption>可选考试相关信息<caption>
+          <thead>
+            <tr>
+              <th>考试编号</th>
+              <th>考试类型</th>
+              <th>考试时间</th>
+              <th>考试地点</th>
+              <th>考试费用</th>
+              <!-- 添加其他字段的表头 -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in data %}
+              <tr>
+                <td>{{ item.exam_id }}</td>
+                <td>{{ item.exam_name }}</td>
+                <td>{{ item.exam_time }}</td>
+                <td>{{ item.location }}</td>
+                <td>{{ item.fee }}</td>
+                <!-- 添加其他字段的数据 -->
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div style="text-align:center">
+        <link rel="stylesheet" href="{% static 'button.css' %}">
+        <a href="/submit_enroll_info/">
+            <button type="submit" class="btn circle">报名考试</button>
+        </a>
+        </div>
+    </body>
+</html>
