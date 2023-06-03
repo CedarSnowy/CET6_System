@@ -1,28 +1,49 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Exam List</title>
+    <title>考试选择</title>
+        <!-- 新 Bootstrap5 核心 CSS 文件 -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    
+        <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+        <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    
+        <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
+        <!-- 设置背景图片 -->
+    <style>
+        body {
+          background-image: url("{% static '/images/background.png' %}");
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Exam List</h1>
-    <table>
-        <thead>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">选择考试</h1>
+        <table class="table table-striped">
+          <thead>
             <tr>
-                <th>Exam Name</th>
-                <th>Exam Time</th>
-                <th>Location</th>
+              <th scope="col">考试名称</th>
+              <th scope="col">考试时间</th>
+              <th scope="col">考试地点</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             {% for exam in exams %}
             <tr>
-                <td><a href="#">{{ exam.exam_name }}</a></td>
-                <td>{{ exam.exam_time }}</td>
-                <td>{{ exam.location }}</td>
+              <td><a href="#">{{ exam.exam_name }}</a></td>
+              <td>{{ exam.exam_time }}</td>
+              <td>{{ exam.location }}</td>
             </tr>
             {% endfor %}
-        </tbody>
-    </table>
+          </tbody>
+        </table>
+    </div>
 </body>
 </html>
