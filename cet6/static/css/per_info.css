@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#reg_header{
+    height: 110px;
+    width: 100%;
+    box-shadow: 0px 0px 10px #8fb61d;
+}
+
+#reg_header .reg_h_center{
+    width: 1200px;
+    height: 110px;
+    margin: 0 auto;
+    display: flex;
+}
+#reg_header .reg_h_left{
+     height: 110px;
+     flex: 1;
+ }
+
+#reg_header .reg_h_left img{
+    height: 100px;
+    width: 120px;
+    float: left;
+}
+#reg_header .reg_h_left h3{
+    float: left;
+    margin-top: 80px;
+    margin-left: 10px;
+}
+#reg_header .reg_h_right{
+    height: 110px;
+    flex: 1;
+    padding-top: 50px;
+    padding-left: 30px;
+}
+
+
+.reg_back {
+    /*设置整体的尺寸、背景色、边距等*/
+    width: 650px;
+    height: 500px;
+    border: 8px solid #eeeeee;
+    background: white;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.reg_left {
+    /*设置左浮动和外边距*/
+    float: left;
+    margin: 20px;
+}
+
+.reg_left > p:first-child {
+    /*设置段落（新用户注册）颜色和字体大小*/
+    color: rgba(47, 109, 201, 0.93);
+    font-size: 20px;
+}
+
+.reg_left > p:last-child {
+    /*设置段落（USER REGISTER）颜色和字体大小*/
+    color: rgba(47, 109, 201, 0.93);
+    font-size: 20px;
+}
+
+.reg_center {
+    /*设置中间的各种输入框等*/
+    float: left;
+    width: 450px;
+    height: 500px;
+    /*margin: auto;*/
+    margin: 0px 0 0 115px; //可以自行微调输入框的位置
+    position:absolute; //绝对位置
+    display:flex;
+    justify-content:center;
+
+    /*position: absolute;*/
+    /*top: 0;*/
+	/*left: 0;*/
+	/*right: 0;*/
+	/*bottom: 0;*/
+	/*margin: auto;*/
+
+}
+
+
+
+
+
+.td_left {
+    /*设置表单中字体对齐方式和宽度、高度*/
+    width: 100px;
+    text-align: right;
+    height: 50px;
+}
+
+.td_right {
+    /*设置输入框内边距*/
+    padding-left: 50px;
+}
+
+#username,#gender,#password,#idcard,#Telphone{
+    /*设置输入框大小和边框*/
+    width: 200px;
+    height: 30px;
+    border: 1px solid #A4A4A4;
+    /* 设置边框为圆角 */
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+
+
+#btn_sub{
+    /*注册按钮*/
+    margin-left: 50px;
+    margin-top: 40px;
+    background: #2587d7;
+    color: whitesmoke;
+    width: 120px;
+    height: 40px;
+    border: 1px solid gray ;
+    /* 设置边框为圆角 */
+    border-radius: 10px;
+    padding-left: 8px;
+}
+
