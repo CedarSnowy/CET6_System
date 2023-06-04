@@ -21,7 +21,7 @@ from django.urls import re_path as url
 from lookupgrade.views import lookupgrades
 from payment.views import information_of_registration, QRcode, pay_done
 from choose_exam.views import choose_exam
-from Search_APPLY.views import search_exam_info, submit_enroll_info
+from Search_APPLY.views import search_exam_info, submit_enroll_info, receive_enroll_submit
 from User_Manage.views import user_login, user_register, per_info, homepage
 from Paper_Modification.models import (
     Paper,
@@ -121,8 +121,8 @@ urlpatterns = [
     path("payment_done/", pay_done),
     path("lookupgrades/", lookupgrades),
     path("choose_exam/", choose_exam),
-    path("search_exam_info/", search_exam_info),
-    path("submit_enroll_info/", submit_enroll_info),
+    # path("search_exam_info/", search_exam_info),
+    # path("submit_enroll_info/", submit_enroll_info),
     path("user/login", user_login),
     path("user/register", user_register),
     path("homepage/<int:nid>/", homepage),
@@ -130,4 +130,7 @@ urlpatterns = [
     path("homepage/<int:nid>/taking_exam", get_questions_by_paper, name="taking_exam"),
     path("submit_answers/", submit_answers, name="submit_answers"),
     path("logout/", logout_view, name="logout"),
+    path("homepage/<int:nid>/search_exam_info", search_exam_info, name="search_exam_info"),
+    path("homepage/<int:nid>/submit_enroll_info", submit_enroll_info, name="submit_enroll_info"),
+    path("receive_enroll_submit/", receive_enroll_submit, name="receive_enroll_submit")
 ]
