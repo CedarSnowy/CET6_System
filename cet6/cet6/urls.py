@@ -116,10 +116,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # url(r'^showStudents$', showStudents),
     # url(r'^payment$', information_of_registration),
-    path("payment/", information_of_registration),
-    path("payment2/", QRcode),
-    path("payment_done/", pay_done),
-    path("lookupgrades/", lookupgrades),
+    path("homepage/<int:nid>/payment/", information_of_registration),
+    path("homepage/<int:nid>/payment2/", QRcode),
+    path("homepage/<int:nid>/payment_done/", pay_done),
+    path("homepage/<int:nid>/lookupgrades/", lookupgrades),
     path("choose_exam/", choose_exam),
     # path("search_exam_info/", search_exam_info),
     # path("submit_enroll_info/", submit_enroll_info),
@@ -132,5 +132,5 @@ urlpatterns = [
     path("logout/", logout_view, name="logout"),
     path("homepage/<int:nid>/search_exam_info", search_exam_info, name="search_exam_info"),
     path("homepage/<int:nid>/submit_enroll_info", submit_enroll_info, name="submit_enroll_info"),
-    path("receive_enroll_submit/", receive_enroll_submit, name="receive_enroll_submit")
+    path("homepage/<int:nid>/receive_enroll_submit", receive_enroll_submit, name="receive_enroll_submit")
 ]

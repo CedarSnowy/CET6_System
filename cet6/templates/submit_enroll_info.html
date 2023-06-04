@@ -28,8 +28,8 @@
  <div class="login-box">
     <h2>考生报名</h2>
 {#     <form action="." method="post">{% csrf_token %}#}
-         <form action="{% url 'receive_enroll_submit' %}" method="POST">
-      {% csrf_token %}
+
+     <form action="./receive_enroll_submit" method="POST">
   <div class="form-group">
     <label for="exampleInputidcard">身份证号</label>
     <input type="text" class="form-control" placeholder="输入身份证号" name="idno">
@@ -39,6 +39,8 @@
     <input type="number" class="form-control" placeholder="输入考试ID" name="examid">
   </div>
   <button type="submit" class="btn btn-primary">提交</button>
+  <button class="btn btn-primary" onclick="window.location.href='./payment'" type="button" >去缴费</button>
+  <button class="btn btn-primary" onclick="window.location.href='./'" type="button" >返回首页</button>
   <span style="color: #ff0000" ;>
       {{ error }}
   </span>
