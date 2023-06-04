@@ -60,7 +60,7 @@ def user_register(request):
 def homepage(request, nid):
     if request.method == "GET":
         return render(request, "homepage.html")
-
+    # return HttpResponse('Hello World!')
 
 # 个人信息页面
 def per_info(request, nid):

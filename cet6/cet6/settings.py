@@ -86,9 +86,9 @@ WSGI_APPLICATION = "cet6.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",  # 数据库的类型
-        "NAME": "cet",  # 所使用的的数据库的名字
+        "NAME": "cet66",  # 所使用的的数据库的名字
         "USER": "root",  # 数据库服务器的用户
-        "PASSWORD": "root",
+        "PASSWORD": "123456",
         "HOST": "localhost",  # 主机
         "PORT": "3306",  # 端口
     }
