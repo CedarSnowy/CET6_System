@@ -48,7 +48,6 @@ def submit_enroll_info(request, nid):
     # 判断是post还是get请求
     if request.method == "GET":
         return render(request, "submit_enroll_info.html")  # 进入考试报名
-
     # else:
     #     # 去请求体中获取数据，再进行校验
     #     idno = request.POST.get('idno')  # 考生id
@@ -77,7 +76,7 @@ def submit_enroll_info(request, nid):
     #             # redirect("/homepage/{}/submit_enroll_info.html".format(nid), {"error": "报名成功，请及时缴费！"})
 
 
-def receive_enroll_submit(request,nid):
+def receive_enroll_submit(request):
     idno = request.POST.get('idno')  # 考生id
     examid = request.POST.get('examid')  # 考试id
     # 去数据库校验，用户名&密码的合法性

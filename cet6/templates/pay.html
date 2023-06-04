@@ -27,8 +27,11 @@
 
  <div class="login-box">
     <h2>考生缴费</h2>
-     <form method="post" action=".">
-
+     <form method="post" action="/payment/">
+  <div class="form-group">
+    <label for="exampleInputidcard">身份证号</label>
+    <input type="text" class="form-control" placeholder="输入身份证号" name="idno">
+  </div>
   <div class="form-group">
     <label for="exampleInputexamid">考试ID</label>
     <input type="number" class="form-control" placeholder="输入考试ID" name="examid">

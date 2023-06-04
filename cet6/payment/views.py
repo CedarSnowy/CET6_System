@@ -6,7 +6,7 @@ from payment import models
 
 # Create your views here.
 #解决图片不出现问题：https://blog.csdn.net/pxyyoona/article/details/109052141
-def information_of_registration(request,nid):
+def information_of_registration(request):
     #新增
     #models.Department.objects.create(**{"title":"123","count":18})
 
@@ -38,8 +38,7 @@ def information_of_registration(request,nid):
         return render(request, "pay.html")
     else:
         #去请求体中获取数据，再进行校验
-        #idno=request.POST.get('idno')
-        idno=nid
+        idno=request.POST.get('idno')
         examid=request.POST.get('examid')
         #去数据库校验，用户名&密码的合法性
         #成果则跳转到后台管理页面/index  /index/
@@ -63,15 +62,15 @@ def information_of_registration(request,nid):
                 flag=1
         if flag==1:
             #return render(request,"qrcode.html")
-            return redirect("/homepage/{}/payment2".format(nid))
+            return redirect('/payment2/')
         else:
             return render(request,"pay.html",{"error":"身份证或考试号码错误,请重新确认是否注册或报名"})
     #2.打开文件读取内容
     #3.模板渲染-》文本替换
     #return render(request, "pay.html", {"messgage": "这里是标题", "data_list":data, "xx":mapping})
 
-def QRcode(request,nid):
-    return render(request, "qrcode.html")
-def pay_done(request,nid):
+def QRcode(request):
+    return render(request,"qrcode.html")
+def pay_done(request):
 
-    return render(request, "pay_done.html")
+    return render(request,"pay_done.html")
