@@ -21,6 +21,15 @@ def homepage(request, nid):
         return render(request, "homepage.html")
 
 
+def get_objective_answers(question_id, examinee_option):
+    objective_question = ObjectiveQuestions.objects.filter(id=question_id).first()
+    correct_option = objective_question.answer_option
+    if correct_option == examinee_option:
+        return objective_question.score
+    else:
+        return 0
+
+
 def get_questions_by_paper(request, nid, paper_id=1):
     global _nid, _paper_id
     _nid, _paper_id = nid, paper_id
@@ -83,12 +92,14 @@ def submit_answers(request):
             if existing_answer:
                 print(f"Answer already exists: id={existing_answer.id}")
             else:
+                score = get_objective_answers(question_id, choice)
+                print(score)
                 answer = ObjectiveAnswers.objects.create(
                     examinee_id=_nid,
                     paper_id=_paper_id,
                     question_id=question_id,
                     answer=choice,
-                    score=0,
+                    score=score,
                 )
                 print(f"Saved answer: id={answer.id}")
 
