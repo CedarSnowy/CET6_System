@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    #"django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -86,9 +86,8 @@ WSGI_APPLICATION = "cet6.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",  # 数据库的类型
-        "NAME": "cet66",  # 所使用的的数据库的名字
+        "NAME": "cet6",  # 所使用的的数据库的名字
         "USER": "root",  # 数据库服务器的用户
-        "PASSWORD": "123456",
         "HOST": "localhost",  # 主机
         "PORT": "3306",  # 端口
     }
