@@ -16,6 +16,9 @@ class SubjectiveQuestions(models.Model):
         managed = True
         db_table = "subjective_questions"
 
+    def __str__(self):
+        return f"{self.id} - {self.question} - {self.answer} - {self.score}"
+
 
 class SubjectiveAnswers(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -26,9 +29,12 @@ class SubjectiveAnswers(models.Model):
     score = models.FloatField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = "subjective_answers"
-        unique_together = (("examinee_id", "paper_id", "question_id"),)
+        # unique_together = (("examinee_id", "paper_id", "question_id"),)
+
+    def __str__(self) -> str:
+        return f"{self.id} - {self.examinee_id} - {self.paper_id} - {self.question_id} - {self.answer} - {self.score}"
 
 
 class ObjectiveQuestions(models.Model):
@@ -45,6 +51,9 @@ class ObjectiveQuestions(models.Model):
         managed = True
         db_table = "objective_questions"
 
+    def __str__(self):
+        return f"{self.id} - {self.question} - {self.answer_option} - {self.score}"
+
 
 class ObjectiveAnswers(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -55,9 +64,12 @@ class ObjectiveAnswers(models.Model):
     score = models.FloatField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = "objective_answers"
-        unique_together = (("examinee_id", "paper_id", "question_id"),)
+        # unique_together = (("examinee_id", "paper_id", "question_id"),)
+
+    def __str__(self) -> str:
+        return f"{self.id} - {self.examinee_id} - {self.paper_id} - {self.question_id} - {self.answer} - {self.score}"
 
 
 class PaperQuestions(models.Model):
@@ -76,3 +88,8 @@ class PaperQuestions(models.Model):
     class Meta:
         managed = True
         db_table = "paper_question"
+
+    def __str__(self) -> str:
+        return (
+            f"{self.id} - {self.paper_id} - {self.question_id} - {self.question_type}"
+        )
