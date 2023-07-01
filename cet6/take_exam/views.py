@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import (
+from db_tables.models import (
     ObjectiveQuestions,
     ObjectiveAnswers,
     SubjectiveQuestions,

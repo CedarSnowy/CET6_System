@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "db_tables",
     "Exam_Manage",  # 考试管理页面
     "Score_Modification",  # 成绩信息修改页面
     "payment",  # 支付页面
